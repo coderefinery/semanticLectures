@@ -29,9 +29,6 @@
                 :title="title"
                 :body="body"
               ></summary>
-              <episodes
-                :courseId="id"
-              />
             </v-card-title>
           </v-card>
         </v-flex>
@@ -45,13 +42,11 @@
   import * as actions from "../../modules/courses/types"
 
   import ReversibleTextField from "../ReversibleTextField"
-  import Episodes from "../Episodes/Episodes"
 
   export default {
     name: 'Course',
     components: {
       ReversibleTextField,
-      Episodes,
     },
     props: {
       id: {

@@ -13,7 +13,7 @@
                   :default-value="displayName"
                   :rules="rules.displayName"
                   :action="onDisplayNameChange"
-                  label="Expansion Name"
+                  label="Elaboration Name"
                 />
                 <v-subheader>
                   <reversible-text-field
@@ -21,7 +21,7 @@
                     :default-value="codeName(displayName)"
                     :rules="rules.variableName"
                     :action="onVariableNameChange"
-                    label="Variable Name for this Expansion"
+                    label="Variable Name for this Elaboration"
                   />
                 </v-subheader>
               </h1>
@@ -29,8 +29,8 @@
                 :title="title"
                 :body="body"
               ></summary>
-              <expansions
-                :expansionId="id"
+              <elaborations
+                :elaborationId="id"
               />
             </v-card-title>
           </v-card>
@@ -41,17 +41,17 @@
 </template>
 
 <script>
-  import { mapActions, mapState, mapGetters } from "../../modules/expansions"
-  import * as actions from "../../modules/expansions/types"
+  import { mapActions, mapState, mapGetters } from "../../modules/elaborations"
+  import * as actions from "../../modules/elaborations/types"
 
   import ReversibleTextField from "../ReversibleTextField"
-  import Expansions from "../Expansions/Expansions"
+  import Elaborations from ".//Elaborations"
 
   export default {
-    name: 'Expansion',
+    name: 'Elaboration',
     components: {
       ReversibleTextField,
-      Expansions,
+      Elaborations,
     },
     props: {
       id: {
@@ -63,13 +63,13 @@
       return {
         rules: {
           displayName: [
-            v => !!v || 'Give this expansion a title'
+            v => !!v || 'Give this elaboration a title'
           ],
           description: [
-            v => !!v || 'Describe this Expansion to your users and your future self'
+            v => !!v || 'Describe this Elaboration to your users and your future self'
           ],
           variableName: [ // todo: keep this behind the scenes
-            v => !!v || 'Provide a variable title to represent this Expansion in code',
+            v => !!v || 'Provide a variable title to represent this Elaboration in code',
             v => (v && !v.match(/^\d/)) || 'Variable title must not begin with a number',
             v => (v && v.match(/^[\w$]+$/)) !== null || 'Variable title can only contain the letters a-z, A-Z, 0-9, and _ or $', // todo: revisit upon ES9 release with RegExp unicode block shorthands.. \p{L}
             v => (v && this.reservedWords.indexOf(v) < 0) || `${v} is reserved and cannot be used`

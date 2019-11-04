@@ -6,16 +6,14 @@
       >
         <v-flex xs12>
           <v-card>
-            <v-card-title>
-              <h1>Courses</h1>
-            </v-card-title>
             <v-card-text>
               <Course
                 v-for="(item, index) in items"
                 :key="index"
-                :appId="item._id"
+                id="1"
               />
               <v-btn
+                class="mt-2"
                 small
                 @click="addCourse"
               >
@@ -50,16 +48,16 @@
     },
     created() {
       // load items into store
-      this.$store.dispatch(`${NAMESPACE}/${actions.GET}`)
+      this.$store.dispatch(`${NAMESPACE}/${actions.GET_LIST}`)
     },
     methods: {
       ...mapActions([
         actions.POST,
       ]),
       addCourse() {
-        let defaultCourse = this.defaultEpisode(Date.now())
-        delete defaultCourse._rules
-        this[actions.POST](defaultCourse)
+        //let defaultCourse = this.defaultEpisode(Date.now())
+        //delete defaultCourse._rules
+        //this[actions.POST](defaultCourse)
       }
     },
   }
