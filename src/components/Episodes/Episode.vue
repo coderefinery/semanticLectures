@@ -28,7 +28,7 @@
               <summary
                 :title="title"
                 :body="body"
-              >
+              ></summary>
               <episodes
                 :episodeId="id"
               />

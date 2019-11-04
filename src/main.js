@@ -5,18 +5,18 @@ import store from './modules'
 import moment from 'moment'
 import _ from 'lodash'
 import vuetify from '@/plugins/vuetify'
-import VueMarkdown from 'vue-markdown'
+import 'vue-simple-markdown/dist/vue-simple-markdown.css'
+import VueSimpleMarkdown from 'vue-simple-markdown'
 
 Vue.config.productionTip = false
+
+Vue.use(VueSimpleMarkdown)
 
 Vue.prototype.moment = moment
 Vue.prototype._ = _
 
 /* eslint-disable no-new */
 new Vue({
-  components: {
-    VueMarkdown
-  },
   render: h => h(App),
   icons: {
     iconfont: 'fa' // 'mdi'

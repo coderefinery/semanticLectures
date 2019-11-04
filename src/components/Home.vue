@@ -17,7 +17,7 @@
               <p>
                 Please edit the .md files in course
               </p>
-              <vue-markdown># vue Markdown</vue-markdown>
+              <md :source="course"></md>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -27,12 +27,15 @@
 </template>
 
 <script>
-  //import Md from './Md/Md'
+  import Md from './Md'
   export default {
     name: 'Home',
+    components: {
+      Md
+    },
     data() {
       return {
-        course: `# _Hello World!_`
+        course: `# _{episode 1}!_`
       }
     }
   }

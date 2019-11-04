@@ -83,6 +83,7 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons');
+  @import '../node_modules/highlightjs/styles/vs2015.css';
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

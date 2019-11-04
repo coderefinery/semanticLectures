@@ -28,13 +28,6 @@
 
   export default {
     name: "ReversibleTextField",
-    data () {
-      return {
-        showEditor: false,
-        previousValue: '',
-        validValue: true
-      }
-    },
     props: {
       label: {
         type: String,
@@ -65,6 +58,13 @@
       defaultValue: {
         type: String,
         default: ''
+      }
+    },
+    data () {
+      return {
+        showEditor: false,
+        previousValue: '',
+        validValue: true
       }
     },
     methods: {

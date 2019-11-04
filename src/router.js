@@ -10,18 +10,6 @@ Vue.use(Router)
 
 export const routes = [
   {
-    path: '/join',
-    title: 'join',
-    icon: 'person_add',
-    component: () => import(/* webpackChunkName: "auth" */ './components/Auth/Join.vue')
-  },
-  {
-    path: '/signin',
-    title: 'signin',
-    icon: 'fingerprint',
-    component: () => import(/* webpackChunkName: "auth" */ './components/Auth/SignIn.vue')
-  },
-  {
     path: '/',
     title: 'Welcome',
     icon: 'home',
@@ -54,7 +42,6 @@ const boxFaces = ['front', 'back', 'right', 'left', 'top', 'bottom']
 const pathFaces = {
   '/': 'front',
   '/courses': 'top',
-  '/login': 'right',
   '/search': 'back',
 }
 

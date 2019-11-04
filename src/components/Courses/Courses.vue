@@ -50,7 +50,7 @@
     },
     created() {
       // load items into store
-      this.$store.dispatch(`${NAMESPACE}/${actions.GET_LIST}`)
+      this.$store.dispatch(`${NAMESPACE}/${actions.GET}`)
     },
     methods: {
       ...mapActions([

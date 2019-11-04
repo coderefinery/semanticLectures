@@ -30,7 +30,7 @@
         </v-btn>
       </v-toolbar-items>
       <v-spacer class="hidden-md-and-up" />
-      <auth />
+      <!-- auth /-->
     </v-toolbar>
     <v-navigation-drawer
       v-model="drawer"
@@ -62,14 +62,10 @@
 </template>
 
 <script>
-import Auth from './Auth/Auth'
 import {routes} from '../router'
 
 export default {
   name: 'Navigation',
-  components: {
-    Auth
-  },
   data() {
     return {
       routes,

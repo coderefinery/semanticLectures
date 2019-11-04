@@ -1,9 +1,32 @@
 <template>
-  <episode
-    v-for="(episode, index) in episodes"
-    :key="index"
-    :id="episode.id"
-  />
+  <div class="episodes">
+    <v-container>
+      <v-layout
+        align-center
+      >
+        <v-flex xs12>
+          <v-card>
+            <v-card-title>
+              <h1>episodes</h1>
+            </v-card-title>
+            <v-card-text>
+              <episode
+                v-for="(item, index) in items"
+                :key="index"
+                :appId="item._id"
+              />
+              <v-btn
+                small
+                @click="addEpisode"
+              >
+                Add Episode
+              </v-btn>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -39,7 +62,7 @@
       ...mapActions([
         actions.POST,
       ]),
-      addCourse() {
+      addEpisode() {
         let defaultEpisode = this.defaultEpisode(Date.now())
         delete defaultEpisode._rules
         this[actions.POST](defaultEpisode)

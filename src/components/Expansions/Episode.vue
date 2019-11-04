@@ -28,7 +28,7 @@
               <summary
                 :title="title"
                 :body="body"
-              >
+              ></summary>
               <expansions
                 :expansionId="id"
               />
