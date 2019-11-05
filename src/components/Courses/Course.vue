@@ -1,7 +1,7 @@
 <template>
   <div class="course mb-4">
      {{ item.displayName }}
-     <re-structured-text :txt="item.body" :id="id"/>
+     <re-structured-text :reST="item.body" :id="id"/>
   </div>
 </template>
 

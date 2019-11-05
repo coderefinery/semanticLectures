@@ -10,16 +10,14 @@
         tile
         sm-6
       >
-        {{ structure }}
+        <re-structured-text-editor :reST="reST"></re-structured-text-editor>
       </v-card>
     </v-col>
     <v-col :cols="6">
       <div
-        class="pa-2"
+        class="pa-2 reStructuredText"
       >
-        <render-re-s-t-component
-          :struct="structure"
-        ></render-re-s-t-component>
+        <re-structured-text-output :struct="structure"></re-structured-text-output>
       </div>
     </v-col>
   </v-row>
@@ -27,7 +25,9 @@
 
 <script>
   import restructured from 'restructured'
-  import RenderReSTComponent from "./renderReSTComponent"
+  import ReStructuredTextEditor from './ReStructuredTextEditor'
+  import ReStructuredTextOutput from './ReStructuredTextOutput'
+
   function getReferencedMarkdown(model, id) {
     return `referenced markdown: ${model}#${id}
     ` + '```javascript\n' +
@@ -77,9 +77,12 @@
   }
   export default {
     name: "ReStructuredText",
-    components: { RenderReSTComponent },
+    components: {
+      ReStructuredTextEditor,
+      ReStructuredTextOutput
+    },
     props: {
-      txt: {
+      reST: {
         type: String,
         required: true
       },
@@ -94,10 +97,14 @@
       }
     },
     created: function() {
-      console.log(this.id)
-
-      this.structure = restructured.parse(this.txt)
-      // todo: loadReferences(this.source) for each value attribute
+      try {
+        this.structure = restructured.parse(this.reST)
+      } catch(e) {
+        this.structure = {
+          type: "error",
+          message: e.message
+        }
+      }
     },
   }
 </script>
@@ -108,5 +115,12 @@
     color: inherit!important;
     font-style: inherit!important;
     font-weight: inherit!important;
+  }
+  .comment {
+    color: #464646;
+  }
+  .reStructuredText>.document>*>.section>*>.title {
+    font-size: 190%!important;
+    margin: 0.5em 0 0.2em 0;
   }
 </style>
