@@ -231,8 +231,7 @@ description.
 Literal Blocks
 --------------
 
-Literal blocks are indicated with a double-colon ("::") at the end of
-the preceding paragraph (over there \`\`-->\`\`).  They can be indented::
+Literal blocks are indicated with a double-colon ("::") at the end of the preceding paragraph (over there \`\`-->\`\`).  They can be indented::
 
     if literal_block:
         text = 'is left as-is'

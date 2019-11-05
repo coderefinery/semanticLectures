@@ -12,6 +12,9 @@ Vue.config.productionTip = false
 
 Vue.use(VueSimpleMarkdown)
 
+// prefetch self-nested components
+Vue.component('ReStructuredTextOutput', () => import('./components/ReStructuredText/ReStructuredTextOutput'))
+
 Vue.prototype.moment = moment
 Vue.prototype._ = _
 

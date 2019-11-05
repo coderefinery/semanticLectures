@@ -1,29 +1,41 @@
 <template>
   <div :class="struct.type">
-    <div
-      v-if="struct.children"
+    <rest-title
+      v-if="struct.type === 'title'"
+      :struct="struct"
+    ></rest-title>
+    <template
+      v-else-if="struct.children"
     >
       <re-structured-text-output
         v-for="(kidStruct, index) in struct.children"
         :key="index"
         :struct="kidStruct"
       ></re-structured-text-output>
-    </div>
-    <span
+    </template>
+    <RestText
       v-else-if="struct.type === 'text'"
-      v-html="struct.value"
-    ></span>
+      :struct="struct"
+    ></RestText>
     <div
       v-else-if="struct.type === 'error'"
-      class="error"
-    >{{struct.message}}</div>
-    <kbd v-else>{{struct.type}}</kbd>
+      :class="struct.type"
+    >
+      {{ struct.message }}
+    </div>
+    <kbd v-else>{{ struct.type }}</kbd>
   </div>
 </template>
 
 <script>
+  import RestTitle from './components/RestTitle'
+  import RestText from './components/RestText'
   export default {
     name: "ReStructuredTextOutput",
+    components: {
+      RestTitle,
+      RestText
+    },
     props: {
       struct: {
         type: Object,
@@ -39,5 +51,9 @@
 <style scoped>
   .error {
     padding: .5em;
+  }
+  .parseTextValuesError {
+    color: white;
+    background-color: darkred;
   }
 </style>

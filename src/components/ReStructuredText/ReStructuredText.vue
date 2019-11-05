@@ -98,12 +98,20 @@
     },
     created: function() {
       try {
-        this.structure = restructured.parse(this.reST)
+        this.structure = this.postProcess(restructured.parse(this.reST))
       } catch(e) {
         this.structure = {
           type: "error",
           message: e.message
         }
+      }
+    },
+    methods: {
+      postProcess(struct) {
+        // todo: detect and map missing patterns
+        // todo: fields >> https://vuetifyjs.com/en/components/data-iterators
+        //
+        return struct
       }
     },
   }
@@ -119,8 +127,30 @@
   .comment {
     color: #464646;
   }
-  .reStructuredText>.document>*>.section>*>.title {
+  .section {
+    margin-bottom: 0.3em;
+  }
+  .reStructuredText .document>.section>.title {
     font-size: 190%!important;
-    margin: 0.5em 0 0.2em 0;
+    margin: 0 0 0.5em 0;
+  }
+  .reStructuredText .paragraph * {
+    display: inline;
+  }
+  .reStructuredText .emphasis {
+    font-style: italic;
+  }
+  .reStructuredText .strong {
+    font-weight: 900!important;
+  }
+  .reStructuredText .literal {
+    font-family: monospace;
+  }
+  .reStructuredText .literal_block {
+    white-space: pre!important;
+    margin: 0.5em 0 0.5em 0 ;
+  }
+  .reStructuredText .block_quote{
+    margin: 0.5em 0 0.5em 1em ;
   }
 </style>
