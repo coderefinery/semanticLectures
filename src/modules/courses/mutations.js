@@ -2,7 +2,7 @@ import * as course from "./types";
 
 export default {
   [course.GET_LIST](state, items) {
-    state.items = items
+    state.items = [...items]
   },
   [course.POST](state, item) {
     state.items.push(item)

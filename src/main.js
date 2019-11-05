@@ -7,10 +7,12 @@ import _ from 'lodash'
 import vuetify from '@/plugins/vuetify'
 import 'vue-simple-markdown/dist/vue-simple-markdown.css'
 import VueSimpleMarkdown from 'vue-simple-markdown'
+import renderReSTComponent from './components/ReStructuredText/renderReSTComponent'
 
 Vue.config.productionTip = false
 
 Vue.use(VueSimpleMarkdown)
+Vue.use(renderReSTComponent)
 
 Vue.prototype.moment = moment
 Vue.prototype._ = _

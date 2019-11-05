@@ -10,7 +10,7 @@
               <Course
                 v-for="(item, index) in items"
                 :key="index"
-                id="1"
+                :id="item.id"
               />
               <v-btn
                 class="mt-2"
@@ -49,6 +49,7 @@
     created() {
       // load items into store
       this.$store.dispatch(`${NAMESPACE}/${actions.GET_LIST}`)
+      this.$store.commit('box/SET_SCENE_HEIGHT_IS_DIRTY', true) // todo: remove specific module knowledge
     },
     methods: {
       ...mapActions([

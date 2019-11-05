@@ -1,39 +1,7 @@
 <template>
-  <div class="document">
-    <v-container>
-      <v-layout
-        align-center
-      >
-        <v-flex xs12>
-          <v-card>
-            <v-card-title>
-              <h1>
-                <reversible-text-field
-                  :value.sync="displayName"
-                  :default-value="displayName"
-                  :rules="rules.displayName"
-                  :action="onDisplayNameChange"
-                  label="Course Name"
-                />
-                <v-subheader>
-                  <reversible-text-field
-                    :value.sync="variableName"
-                    :default-value="codeName(displayName)"
-                    :rules="rules.variableName"
-                    :action="onVariableNameChange"
-                    label="Variable Name for this Course"
-                  />
-                </v-subheader>
-              </h1>
-              <summary
-                :title="title"
-                :body="body"
-              ></summary>
-            </v-card-title>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+  <div class="course mb-4">
+     {{ item.displayName }}
+     <re-structured-text :txt="item.body" :id="id"/>
   </div>
 </template>
 
@@ -41,12 +9,13 @@
   import { mapActions, mapState, mapGetters } from "../../modules/courses"
   import * as actions from "../../modules/courses/types"
 
-  import ReversibleTextField from "../ReversibleTextField"
+  import ReStructuredText from '../ReStructuredText/ReStructuredText'
+  import generateJSName from "../../lib/generateVariableName"
 
   export default {
     name: 'Course',
     components: {
-      ReversibleTextField,
+      ReStructuredText
     },
     props: {
       id: {
@@ -74,9 +43,10 @@
     },
     computed: {
       ...mapState({
-        displayName: function ({items}) { return items.find(item => item._id === this.id).displayName },
-        description: function ({items}) { return items.find(item => item._id === this.id).description },
-        variableName: function ({items}) { return items.find(item => item._id === this.id).variableName },
+        item: function ({items}) {return items.find(item => {
+          this.$store.commit('box/SET_SCENE_HEIGHT_IS_DIRTY', true, {root: true})
+          return item.id === this.id
+        })},
       }),
       reservedWords: state => [...state.reservedWords]
     },
@@ -87,11 +57,7 @@
           actions.PUT_VARIABLENAME
         ]
       ),
-      ...mapGetters({
-        codeName: function () {
-          this.$store.getters.DISPLAYNAME_TO_VARIABLENAME(this.displayName)
-        }
-      }),
+      codeName: generateJSName,
       onDisplayNameChange(updatedValue) {
         this[actions.PUT_DISPLAYNAME]({
           id: this.id,

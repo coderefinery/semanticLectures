@@ -4,14 +4,14 @@
       v-if="!showEditor"
       class="displayValue"
       @click="showEditor = true"
-      v-text="value || `&lt;empty&gt;`"
+      v-text="visibleFieldValue(value)"
     ></span>
     <v-form
       v-else
       :model="validValue"
     >
       <v-text-field
-        :value="value && value.length ? value : defaultValue"
+        :value="visibleFieldValue(value, defaultValue)"
         :label="label"
         :rules="rules"
         :color="color"
@@ -68,6 +68,10 @@
       }
     },
     methods: {
+      visibleFieldValue(value, defaultValue) {
+        if (!defaultValue) defaultValue = '&lt;empty&gt;'
+        return value || defaultValue
+      },
       checkValue(e) {
         if (this.validValue) {
           this.previousValue = this.value

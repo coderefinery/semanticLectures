@@ -1,11 +1,5 @@
-import reST from './temp'
 
 const state = {
-  items: [
-    {
-      id: '1',
-      body: reST
-    }
-  ],
+  items: [],
 }
 export default state

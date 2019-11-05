@@ -106,6 +106,7 @@ export default {
         }
       }
     )
+    this.adjustSize()
   },
   methods: {
     yTranslation(face) {

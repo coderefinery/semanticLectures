@@ -9,7 +9,7 @@ function generateCourse(timestamp) {
     displayName: 'My New Course',
     description: 'This course serves to fulfill a purpose',
     variableName: 'my_new_course', // auto-generated
-    objects: [],
+    episodes: []
   }
 }
 

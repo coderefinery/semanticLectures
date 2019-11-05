@@ -1,16 +1,39 @@
 <template>
-  <div>
-    {{txt}}
-  </div>
+  <v-row
+    no-gutters
+  >
+    <v-col :cols="6">
+      <v-card
+        grey
+        class="pa-2"
+        outlined
+        tile
+        sm-6
+      >
+        {{ structure }}
+      </v-card>
+    </v-col>
+    <v-col :cols="6">
+      <div
+        class="pa-2"
+      >
+        <render-re-s-t-component
+          :struct="structure"
+        ></render-re-s-t-component>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
+  import restructured from 'restructured'
+  import RenderReSTComponent from "./renderReSTComponent"
   function getReferencedMarkdown(model, id) {
     return `referenced markdown: ${model}#${id}
     ` + '```javascript\n' +
       'const code = undefined // huh...```'
   }
-  function loadReferences(md) {
+  function loadReferences(text) {
     const models = [
       'course',
       'lecture',
@@ -26,21 +49,21 @@
 
     do {
 
-      match = rx.exec(md)
+      match = rx.exec(text)
       if (match) {
         const reference = match[0]  // '{model id}'
         const model = match[1]      // 'model'
         const id = match[2]         // 'id'
 
-        const trailingText = md.substring(rx.lastIndex)
+        const trailingText = text.substring(rx.lastIndex)
 
         const inserted = getReferencedMarkdown(model, id)
 
         rx.lastIndex -= reference.length // let rx search in inserted text
 
-        const previousText = md.substring(previousIndex, rx.lastIndex)
+        const previousText = text.substring(previousIndex, rx.lastIndex)
 
-        md = [
+        text = [
           previousText,
           inserted,           // substitute reference for its module
           trailingText
@@ -50,23 +73,31 @@
       }
     } while(match)
 
-    return md
+    return text
   }
   export default {
-    name: "Md",
+    name: "ReStructuredText",
+    components: { RenderReSTComponent },
     props: {
-      source: {
+      txt: {
+        type: String,
+        required: true
+      },
+      id: {
         type: String,
         required: true
       }
     },
     data() {
       return {
-        md: ''
+        structure: {}
       }
     },
-    created() {
-      this.md = loadReferences(this.source)
+    created: function() {
+      console.log(this.id)
+
+      this.structure = restructured.parse(this.txt)
+      // todo: loadReferences(this.source) for each value attribute
     },
   }
 </script>

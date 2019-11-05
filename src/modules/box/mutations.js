@@ -11,9 +11,15 @@ import {
   SET_FACE_HEIGHT
 } from './types'
 const mutations = {
-  [SET_SCENE_WIDTH]: function (state, value) { state.sceneWidth = value },
-  [SET_SCENE_HEIGHT_IS_DIRTY]: function (state, value) { state.sceneHeightIsDirty = value },
-  [SET_SCENE_HEIGHT]: function (state, value) { state.sceneHeight = value },
+  [SET_SCENE_WIDTH]: function (state, value) {
+    state.sceneWidth = value
+  },
+  [SET_SCENE_HEIGHT_IS_DIRTY]: function (state, value) {
+    state.sceneHeightIsDirty = value
+  },
+  [SET_SCENE_HEIGHT]: function (state, value) {
+    state.sceneHeight = value
+  },
   [SET_BOX_WIDTH]: function (state, value) {
     state.width = value
   },

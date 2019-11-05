@@ -1,4 +1,3 @@
-import generateJSName from "../lib/generateVariableName"
 
 function resolvePath(origin, path) {
   console.log('resolving path', origin, path)
@@ -28,16 +27,12 @@ function resolvePath(origin, path) {
   return ancestor
 }
 
-export const DISPLAYNAME_TO_VARIABLENAME = 'DISPLAYNAME_TO_VARIABLENAME'
-
 export const RESOLVE_PATH = 'RESOLVE_PATH'
 
 export default {
   isAuthenticated: state => state.user !== null && state.user !== undefined,
   [RESOLVE_PATH]: state => (origin, path) => {
     return resolvePath(origin, path)
-  },
-  [DISPLAYNAME_TO_VARIABLENAME]: state => (displayName => generateJSName(displayName))(),
-
+  }
 }
 
