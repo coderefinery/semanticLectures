@@ -1,21 +1,21 @@
 <template>
   <div class="course mb-4">
      {{ item.displayName }}
-     <re-structured-text :reST="item.body" :id="id"/>
+    <markdown-it :md="item.body" :id="id"></markdown-it>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState, mapGetters } from "../../modules/courses"
+  import { mapActions, mapState } from "../../modules/courses"
   import * as actions from "../../modules/courses/types"
 
-  import ReStructuredText from '../ReStructuredText/ReStructuredText'
+  import MarkdownIt from '../MarkdownIt/MarkdownIt.vue'
   import generateJSName from "../../lib/generateVariableName"
 
   export default {
     name: 'Course',
     components: {
-      ReStructuredText
+      MarkdownIt
     },
     props: {
       id: {

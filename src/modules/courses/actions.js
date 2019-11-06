@@ -1,6 +1,6 @@
 import namespace, * as model from './types'
 
-import reST from '../../../data/reStructuredText'
+import reST from '../../../data/markdownIt'
 
 let items = []
 for (let name in reST) {
