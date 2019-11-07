@@ -1,17 +1,17 @@
 <template>
-  <div class="course mb-4">
-     {{ item.title }}
+  <div class="mb-4">
+     {{ item.displayName }}
     <markdown-it :md="item.body" :id="id"></markdown-it>
   </div>
 </template>
 
 <script>
-  import { mapState } from "../../modules/courses"
+  import { mapState } from "../../../modules/markdownItTests"
 
-  import MarkdownIt from '../MarkdownIt/MarkdownIt.vue'
+  import MarkdownIt from '../../MarkdownIt/MarkdownIt.vue'
 
   export default {
-    name: 'Course',
+    name: 'RenderTest',
     components: {
       MarkdownIt
     },
@@ -34,16 +34,4 @@
 </script>
 
 <style scoped>
-  .json .string.editable {
-    color: darkgreen
-  }
-  .json .colon {
-    margin-right: .3em;
-  }
-  .json .block {
-    margin-left: 1em;
-  }
-  .container {
-    padding: 0
-  }
 </style>

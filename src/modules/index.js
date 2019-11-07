@@ -9,6 +9,7 @@ import state from './state'
 import box from './box'
 import colors from './colors'
 import courses from './courses'
+import markdownItTests from './markdownItTests'
 /*
 import courses from './courses'
 import episodes from './episodes'
@@ -30,6 +31,7 @@ const store = new Vuex.Store({
     box,
     colors,
     courses,
+    markdownItTests,
   },
   strict: debug
 })

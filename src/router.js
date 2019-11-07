@@ -5,6 +5,7 @@ import store from './modules'
 import { SET_BOX_FACE } from './modules/box/types'
 import Home from './components/Home.vue'
 import Courses from './components/Courses/Courses.vue'
+import MarkdownItTests from "./components/MarkdownIt/MarkdownItTests/MarkdownItTests"
 
 Vue.use(Router)
 
@@ -22,6 +23,13 @@ export const routes = [
     icon: 'dashboard',
     inMenu: true,
     component: Courses
+  },
+  {
+    path: '/markdownItTests',
+    title: 'MarkdownIt Tests',
+    icon: 'spellcheck',
+    inMenu: true,
+    component: MarkdownItTests
   },
   {
     path: '/search',
@@ -42,6 +50,7 @@ const boxFaces = ['front', 'back', 'right', 'left', 'top', 'bottom']
 const pathFaces = {
   '/': 'front',
   '/courses': 'top',
+  '/markdownItTests': 'bottom',
   '/search': 'back',
 }
 

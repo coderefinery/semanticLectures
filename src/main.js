@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 Vue.use(VueSimpleMarkdown)
 
 // prefetch self-nested components
+Vue.component('MarkdownItOutput', () => import('./components/MarkdownIt/MarkdownItOutput.vue'))
 Vue.component('Excursions', () => import('./components/MarkdownIt/components/Excursions.vue'))
 
 Vue.prototype.moment = moment

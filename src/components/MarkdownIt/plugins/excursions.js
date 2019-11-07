@@ -20,7 +20,7 @@ function render(tokens, idx) {
     return `<excursions tagString="${html.escape(jsonTags)}">`
   } else {
     // closing tag
-    return '</excursions>\n'
+    return '</excursions>'
   }
 }
 export default {
