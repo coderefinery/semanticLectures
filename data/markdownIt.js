@@ -8,7 +8,7 @@ export default {
 ###### h6 Heading
 `,
   excursion: `
-:::{git-intro, humanities}:::
+:::point 'git is a version control system'
 `,
   horizontalRules: `
 ## Horizontal Rules
