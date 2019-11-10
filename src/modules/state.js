@@ -10,6 +10,14 @@ const state = {
     'HPC',
     'Humanities'
   ],
+  scopeNames: [
+    'course',
+    'episode',
+    'elaboration',
+    'example',
+    'point',
+    'summary'
+  ],
   preferredFlavor: 'Python',
 }
 export default state

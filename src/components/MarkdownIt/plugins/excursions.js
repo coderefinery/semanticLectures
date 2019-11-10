@@ -1,9 +1,11 @@
 import { html } from  '../../../lib/escape'
+import state from '../../../modules/state'
 
-const pTag = '[^\\},]+'
-const pFirstTag = `(?:${pTag})`
-const pTrailingTags = `(?:\\s*,\\s*${pTag})`
-const matchPattern = `^\\{(\\s*${pFirstTag}${pTrailingTags}\\s*)\\}:::$`
+const pScopeName = `(${state.scopeNames.join('|')})`
+const pTrackId = '[^,]+'
+const pTrackIds = `(${pTrackId}(?:\\s*,\\s*${pTrackId})?)`
+const pFileReference = `['"]([\\s\\S]+)(?:\\.md)?['"]`
+const matchPattern = `^\\s*${pScopeName}\\s+${pFileReference}(?:\\s+${pTrackIds})?\\s*$`
 const matchExpression = new RegExp(matchPattern)
 
 function validate(params) {
