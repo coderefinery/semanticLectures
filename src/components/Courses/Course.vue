@@ -6,7 +6,8 @@
 </template>
 
 <script>
-  import { mapState } from "../../modules/courses"
+  import { mapActions, mapState } from "../../modules/courses"
+  import * as actions from "../../modules/courses/types"
 
   import MarkdownIt from '../MarkdownIt/MarkdownIt.vue'
 
@@ -27,9 +28,18 @@
           this.$store.commit('box/SET_SCENE_HEIGHT_IS_DIRTY', true, {root: true})
           return item.id === this.id
         })},
+        points: function ({points}) {return [points]}
       }),
       reservedWords: state => [...state.reservedWords]
     },
+    created() {
+      this[actions.GET_POINTS]()
+    },
+    methods: {
+      ...mapActions([
+        actions.GET_POINTS
+      ])
+    }
   }
 </script>
 
